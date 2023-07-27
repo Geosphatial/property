@@ -490,7 +490,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"rent_range": "real","type": "str","electricit": "str","water": "str","status": "str","bld_plan_a": "str","c_of_o": "str"};
+        var Filters = {"rent_range": "real","type": "str","electricit": "str","water": "str","status": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -620,7 +620,7 @@
             document.getElementById("menu").appendChild(div_type);
             sel_type = document.createElement('select');
             sel_type.multiple = true;
-            sel_type.size = 8;
+            sel_type.size = 6;
             sel_type.id = "sel_type";
             var type_options_str = "<option value='' unselected></option>";
             sel_type.onchange = function(){filterFunc()};
@@ -629,8 +629,6 @@
             type_options_str  += '<option value="3 bedroom flat">3 bedroom flat</option>';
             type_options_str  += '<option value="4 bedroom flat">4 bedroom flat</option>';
             type_options_str  += '<option value="Self con">Self con</option>';
-            type_options_str  += '<option value="Selfcon">Selfcon</option>';
-            type_options_str  += '<option value="Single Room">Single Room</option>';
             type_options_str  += '<option value="Single room">Single room</option>';
             sel_type.innerHTML = type_options_str;
             div_type.appendChild(sel_type);
@@ -689,16 +687,12 @@
             document.getElementById("menu").appendChild(div_water);
             sel_water = document.createElement('select');
             sel_water.multiple = true;
-            sel_water.size = 7;
+            sel_water.size = 3;
             sel_water.id = "sel_water";
             var water_options_str = "<option value='' unselected></option>";
             sel_water.onchange = function(){filterFunc()};
             water_options_str  += '<option value="NULL">NULL</option>';
             water_options_str  += '<option value="Bore hole">Bore hole</option>';
-            water_options_str  += '<option value="Borehole">Borehole</option>';
-            water_options_str  += '<option value="Tap">Tap</option>';
-            water_options_str  += '<option value="Well">Well</option>';
-            water_options_str  += '<option value="Well Water">Well Water</option>';
             water_options_str  += '<option value="Well water">Well water</option>';
             sel_water.innerHTML = water_options_str;
             div_water.appendChild(sel_water);
@@ -749,73 +743,6 @@
                 filterFunc();
             };
             div_status.appendChild(reset_status);
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_bld_plan_a = document.createElement('div');
-            div_bld_plan_a.id = "div_bld_plan_a";
-            div_bld_plan_a.className= "filterselect";
-            document.getElementById("menu").appendChild(div_bld_plan_a);
-            sel_bld_plan_a = document.createElement('select');
-            sel_bld_plan_a.multiple = true;
-            sel_bld_plan_a.size = 7;
-            sel_bld_plan_a.id = "sel_bld_plan_a";
-            var bld_plan_a_options_str = "<option value='' unselected></option>";
-            sel_bld_plan_a.onchange = function(){filterFunc()};
-            bld_plan_a_options_str  += '<option value="NULL">NULL</option>';
-            bld_plan_a_options_str  += '<option value="APPROVED">APPROVED</option>';
-            bld_plan_a_options_str  += '<option value="FENCE APPROVED">FENCE APPROVED</option>';
-            bld_plan_a_options_str  += '<option value="FENCE PLAN APPROVED">FENCE PLAN APPROVED</option>';
-            bld_plan_a_options_str  += '<option value="FENCE PLAN PROCESSING">FENCE PLAN PROCESSING</option>';
-            bld_plan_a_options_str  += '<option value="NOT APPROVED">NOT APPROVED</option>';
-            bld_plan_a_options_str  += '<option value="UNDER PROCESSING">UNDER PROCESSING</option>';
-            sel_bld_plan_a.innerHTML = bld_plan_a_options_str;
-            div_bld_plan_a.appendChild(sel_bld_plan_a);
-            var lab_bld_plan_a = document.createElement('div');
-            lab_bld_plan_a.innerHTML = 'bld_plan_a';
-            lab_bld_plan_a.className = 'filterlabel';
-            div_bld_plan_a.appendChild(lab_bld_plan_a);
-            var reset_bld_plan_a = document.createElement('div');
-            reset_bld_plan_a.innerHTML = 'clear filter';
-            reset_bld_plan_a.className = 'filterlabel';
-            reset_bld_plan_a.onclick = function() {
-                var options = document.getElementById("sel_bld_plan_a").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_bld_plan_a.appendChild(reset_bld_plan_a);
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_c_of_o = document.createElement('div');
-            div_c_of_o.id = "div_c_of_o";
-            div_c_of_o.className= "filterselect";
-            document.getElementById("menu").appendChild(div_c_of_o);
-            sel_c_of_o = document.createElement('select');
-            sel_c_of_o.multiple = true;
-            sel_c_of_o.size = 2;
-            sel_c_of_o.id = "sel_c_of_o";
-            var c_of_o_options_str = "<option value='' unselected></option>";
-            sel_c_of_o.onchange = function(){filterFunc()};
-            c_of_o_options_str  += '<option value="NULL">NULL</option>';
-            c_of_o_options_str  += '<option value="YES">YES</option>';
-            sel_c_of_o.innerHTML = c_of_o_options_str;
-            div_c_of_o.appendChild(sel_c_of_o);
-            var lab_c_of_o = document.createElement('div');
-            lab_c_of_o.innerHTML = 'c_of_o';
-            lab_c_of_o.className = 'filterlabel';
-            div_c_of_o.appendChild(lab_c_of_o);
-            var reset_c_of_o = document.createElement('div');
-            reset_c_of_o.innerHTML = 'clear filter';
-            reset_c_of_o.className = 'filterlabel';
-            reset_c_of_o.onclick = function() {
-                var options = document.getElementById("sel_c_of_o").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_c_of_o.appendChild(reset_c_of_o);
         </script>
     </body>
 </html>
